@@ -17,30 +17,43 @@
 #include <stdio.h>
 #include <string.h>
 
+// defines if `number` is prime by brute-force.
+// returns 0 if prime, the smallest divisor if not prime.
+int isprime(int number)
+{
+    int prime = 0;
+    int counter = 2;
+    while(counter < number) {
+        // oops, found a divisor!
+        if (number % counter == 0) {
+            prime = counter;
+            break;
+        }
+        ++counter;
+    }
+
+    // What, still no divisor? My gosh, we found a prime!
+    return prime;
+}
+
 int main(int argc, char **argv)
 {
     if (argc == 1) {
         printf("Error: please pass an integer to see if it's prime.\n");
         return 1;
     }
-    int test;
-    int counter = 2;
 
-    // There's no boolean type (wtf?) so we test against 1 or 0.
-    int prime = 1;
+    int test, result;
     sscanf(argv[1], "%d", &test);
 
-    while(counter < test) {
-        if (test % counter == 0) {
-            printf("%d is not a prime number; it's divisible by %d.\n", test, counter);
-            prime = 0;
-            break;
-        }
-        ++counter;
+    result = isprime(test);
+
+    if (result == 0) {
+        printf("%d is a prime number.\n", test);
+    }
+    else {
+        printf("%d is not a prime number. It's divisible by %d\n", test, result);
     }
 
-    if(prime == 1)
-        printf("%d is a prime number.\n", test);
-    
     return 0;
 }

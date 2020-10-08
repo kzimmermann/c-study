@@ -43,5 +43,5 @@ int main(int argc, char **argv)
     else {
         printf("%d is not a leap year.\n", year);
     }
-    return 0;
+    return EXIT_SUCCESS;
 }
