@@ -73,7 +73,6 @@ void capitalize(char *cur, char *new)
 
     // "trackers" of strings
     char *cur_ptr = cur;
-    char *new_ptr = new;
     int counter = 0;
     
     while(*cur_ptr != '\0') {
